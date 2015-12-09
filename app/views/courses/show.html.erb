@@ -5,6 +5,12 @@
 		</h2>
 
 		<p>
+ 		<strong>Rating:</strong>
+  		<%= @avg_ratings %>
+		</p>
+
+		<p> <%= "#{@reviews.length} reviews"%> </p>
+		<p>
  		<strong>Number:</strong>
   		<%= @course.number %>
 		</p>
@@ -26,10 +32,18 @@
 		<% if @reviews.blank? %>
 			<h3> No reviews yet. Be first one to write one </h3>
 		<% else %>
-			<% @reviews.each do |review| %>
-				<p> <%= review.rating %> </p>
-				<p> <%= review.comment %> </p>
-			<% end %>
+		<table class="table">
+			<tbody>
+				<% @reviews.each do |review| %>
+					<tr>
+						<td>
+							<p> <%= review.rating %> </p>
+							<p> <%= review.comment %> </p>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
 		<% end %>
 	</div>
 </div>

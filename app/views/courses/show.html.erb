@@ -53,7 +53,7 @@
 							<% if user_signed_in? %>
 								<% if (review.user == current_user) || (current_user.admin?)%>
 									<%= link_to "Edit",edit_course_review_path(@course,review)%>
-									<%= link_to "Delete",course_review_path(@course,review), , method: :delete %>
+									<%= link_to "Delete",course_review_path(@course,review), method: :delete %>
 								<% end %>
 							<% end %>
 						</td>

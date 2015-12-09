@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @reviews = Review.where(course_id: @course.id)
+    @reviews = Review.where(course_id: @course.id).order("created_at DESC")
     if @reviews.blank?
       @avg_ratings = 0
     else

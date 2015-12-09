@@ -38,7 +38,7 @@
 					<tr>
 						<td>
 							<p> <%= review.rating %> </p>
-							<p> <%= review.comment %> </p>
+							<p> <%= h(review.comment).gsub(/\n/,'<br/>').html_safe %> </p>
 						</td>
 					</tr>
 				<% end %>

@@ -34,8 +34,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @courses, inner_window: 1, outer_window: 0, renderer: BootstrapPagination::Rails %>
 <br>
-
 <% if user_signed_in? && current_user.admin? %>
   <%= link_to 'New Course', new_course_path , class: "btn btn-link"%>
 <% end %>

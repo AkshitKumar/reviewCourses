@@ -6,7 +6,18 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    if params[:search].present?
+      @courses = Course.search params[:search], 
+                 operator: "or",
+                 page: params[:page], 
+                 per_page: 10, 
+                 order: [number: :asc], 
+                 misspellings: false, 
+                 fields: [{name: :word_start},:prof,:number] ,
+                 match: :word_start
+    else
+      @courses = Course.order("number ASC").all.paginate(:page => params[:page], :per_page => 10)
+    end  
   end
 
   # GET /courses/1

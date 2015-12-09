@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20151209054638) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "oauth", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oauths", force: :cascade do |t|
+    t.string   "only"
+    t.string   "create"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.text     "comment"

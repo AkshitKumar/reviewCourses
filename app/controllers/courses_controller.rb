@@ -6,6 +6,9 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+    if !logged_in?
+      redirect_to url_for(:controller=>'oauth',:action=>'index')
+    end
     if params[:search].present?
       @courses = Course.search params[:search], 
                  operator: "or",
@@ -87,7 +90,7 @@ class CoursesController < ApplicationController
     end
 
     def check_user
-      unless current_user.admin?
+      unless admin?
         redirect_to root_url, alert: "Sorry, only admins can do that"
       end
     end

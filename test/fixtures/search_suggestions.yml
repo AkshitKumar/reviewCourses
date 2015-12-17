@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  term: MyString
+  course_id: MyString
+  term_type: MyString
+  popularity: MyString
+
+two:
+  term: MyString
+  course_id: MyString
+  term_type: MyString
+  popularity: MyString

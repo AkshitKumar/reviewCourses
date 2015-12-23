@@ -18,7 +18,7 @@
         <li><%= link_to "Contact",pages_contact_path %></li>
         <div class="input-group">
   <%= form_tag(courses_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search courses", class: 'form-control',name: 'search' ,id: 'search'%>
+    <%= text_field_tag :search, params[:search], placeholder: "Search courses", class: 'form-control',name: 'search' ,id: 'search', autocomplete: 'off'%>
     <span class="input-group-btn">
       <%= submit_tag "Search", class: 'btn btn-default', name: nil %>
     </span>

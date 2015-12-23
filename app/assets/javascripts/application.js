@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require typeahead
 //= require jquery_ujs
 //= require turbolinks

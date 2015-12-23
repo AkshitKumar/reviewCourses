@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-
   resources :courses do
     resources :reviews , except: [:show, :index]
   end
-
   get 'pages/about'
 
   get 'pages/contact'
 
   root 'courses#index'
+
+  resources :oauth
+  get 'login'=> 'oauth#index'
+  delete 'logout'=>'oauth#signout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

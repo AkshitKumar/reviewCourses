@@ -1,4 +1,5 @@
-module OauthsHelper
+module OauthHelper
+
 
 $CLIENT_ID='coursereview'
 $CLIENT_SECRET= '9872ac94bcd8d0a469a93672942dfbeab4805bf7'
@@ -29,13 +30,13 @@ $PRIVATE_SITE=false
   	end
 
   	def get_token 
-	   
+	  
 	    require 'json'
 		require 'open-uri'
 		@file = JSON.parse open(@token_url).read
 		@access_token=@file['access_token']
-   
-		end
+   		
+	end
 
   	def get_access_token 
     	@access_token = session[:access_token]
@@ -86,5 +87,4 @@ $PRIVATE_SITE=false
     end
   end
 end
-
 

@@ -1,7 +1,6 @@
-class OauthsController < ApplicationController
+class OauthController < ApplicationController
 
 	def index
-		
 		@redirect_uri = request.original_url
 		@auth_code = params[:authorization_code]
 		if session[:access_token]
@@ -25,7 +24,7 @@ class OauthsController < ApplicationController
 	     		@student=User.find_by_username(@user['username'])
 	     		log_in @student
 					if @student.remember_token == 0
-						redirect_to cats_path
+						redirect_to courses_path
 						@student.remember_token = 1
 					else
 	     			redirect_to root_path

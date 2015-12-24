@@ -8,7 +8,7 @@ $(function() {
             source: '/search_suggestions',
   // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the term.
             focus: function(event, ui) {
-                $('#search').val(ui.item.term);
+                $('#search').val(ui.item.term_type);
                 return false;
             },
  // Once a value in the drop down list is selected, do the following:

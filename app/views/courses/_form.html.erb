@@ -21,6 +21,10 @@
     <%= f.text_field :number , class: "form-control"%>
   </div>
   <div class="form-group">
+  <%= f.label "Department"%><br />
+  <%= f.collection_select :dept_id, Dept.all, :id, :label, :prompt => "Select a department" , class: "form-control"%>
+  </div>
+  <div class="form-group">
     <%= f.label :prof %><br>
     <%= f.text_field :prof , class: "form-control"%>
   </div>

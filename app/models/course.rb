@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
 	has_many :reviews
+	belongs_to :dept
 	searchkick word_start: [:name]
 	validates :name, :number , :prof , :credits , presence: true
 end

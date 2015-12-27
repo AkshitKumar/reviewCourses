@@ -30,3 +30,42 @@
 #search-form{
 	display: table;
 }
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+
+ .sidenav{
+position:fixed;
+top:80px;
+left:30px;
+height:75%;
+background:white;
+overflow-y:auto;
+//padding-right:10px;
+//border-right:1px solid #2C3E50;
+}
+
+.side-list,.side-sublist{
+list-style-type:none;
+}
+
+.side-a,.side-b{
+color:#2C3E50;
+font-weight:bold;
+}
+
+.side-a:hover,.side-b:hover,.side-a:active,.side-b:active{
+text-decoration:none;
+color:#2C3E50;
+}
+
+.active{
+font-weight:bold;
+}
+
+.side-list{
+padding:5px 0px 0px 0px;
+}

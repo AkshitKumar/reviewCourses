@@ -38,14 +38,12 @@
  }
 
  .sidenav{
-position:fixed;
-top:80px;
-left:30px;
-height:75%;
 background:white;
-overflow-y:auto;
-//padding-right:10px;
-//border-right:1px solid #2C3E50;
+}
+
+.menu-content{
+	height: 500px;
+	overflow-y: auto;
 }
 
 .side-list,.side-sublist{
@@ -68,4 +66,21 @@ font-weight:bold;
 
 .side-list{
 padding:5px 0px 0px 0px;
+}
+
+tr.side-list{
+	display: none;
+}
+
+.newcourse{
+	position: fixed;
+	bottom:30px;
+	right:30px;
+}
+
+.tdnew{
+	padding:0px;
+	font-size:13px;
+	vertical-align:inherit;
+	border:0;
 }

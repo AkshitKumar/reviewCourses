@@ -1,5 +1,8 @@
 $(function() {
-
+    $(".sort_paginate_ajax").on("click",".pagination a", function(){
+        $.getScript(this.href);
+        return false;
+    });
  // Below is the name of the textfield that will be autocomplete    
     $('#search').autocomplete({
  // This shows the min length of charcters that must be typed before the autocomplete looks for a match.

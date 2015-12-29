@@ -1,10 +1,12 @@
 <% @depts = Dept.all %>
-<div class="sidenav">
+<div class="sidenav col-md-3">
+	<h4>List by Department</h4>
 	<form id="menu-content" class="menu-content form-group">
-		<li class="side-list"><input type="checkbox" class="form-group">All<span class="arrow"></span></input></li>
 	<% @depts.each do |dept| %>
-			<li class="side-list"><!-- <input type="checkbox" class="<%= dept.name%>"><%= dept.label %></input> -->
-				<%= check_box_tag "dept_id[]",dept.name%>
+			<li class="side-list">
+				<%= radio_button_tag 'dept_id',dept.id,false,
+				data: {remote: true,url: url_for(action: :index, dept_id: dept.id),dept_id: dept.id}
+				%>
 				<%= h dept.label %>
       </li>
 	<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211113430) do
+ActiveRecord::Schema.define(version: 20151227155112) do
 
 <<<<<<< HEAD
   create_table "courses", force: :cascade do |t|
@@ -56,13 +56,21 @@ ActiveRecord::Schema.define(version: 20151211113430) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.integer  "dept_id",    limit: 4
     t.string   "number",     limit: 255
+    t.string   "name",       limit: 255
     t.string   "prof",       limit: 255
     t.integer  "credits",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
 >>>>>>> 1e07399d72f14457b2b77f9cf2d1ac23fc4068ba
+  end
+
+  create_table "depts", force: :cascade do |t|
+    t.text     "name",       limit: 65535
+    t.text     "label",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -72,6 +80,15 @@ ActiveRecord::Schema.define(version: 20151211113430) do
     t.datetime "updated_at",               null: false
     t.integer  "user_id",    limit: 4
     t.integer  "course_id",  limit: 4
+  end
+
+  create_table "search_suggestions", force: :cascade do |t|
+    t.string   "term",       limit: 255
+    t.integer  "course_id",  limit: 4
+    t.string   "term_type",  limit: 255
+    t.integer  "popularity", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|

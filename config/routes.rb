@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :depts
+  resources :search_suggestions
   resources :courses do
     resources :reviews , except: [:show, :index]
   end

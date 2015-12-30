@@ -13,13 +13,13 @@ class CoursesController < ApplicationController
       @courses = Course.search params[:search], 
                  operator: "or",
                  page: params[:page], 
-                 per_page: 10, 
+                 per_page: 15, 
                  order: [number: :asc], 
                  misspellings: false, 
                  fields: [{name: :word_start},:prof,:number] ,
                  match: :word_start
     else
-      @courses = Course.order("number ASC").all.paginate(:page => params[:page], :per_page => 10)
+      @courses = Course.where(dept_id: params[:dept_id]).paginate(:page => params[:page], :per_page => 15)
     end  
   end
 
@@ -50,6 +50,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
+        %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else

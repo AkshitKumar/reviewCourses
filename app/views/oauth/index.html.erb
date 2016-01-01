@@ -7,7 +7,7 @@
 <h1><%= @s %></h1>
 
 <%= @tokenURL %>
-<%= link_to "Sign In",  @auth_url %>
+<%= link_to "Sign In",  @auth_url, class: "btn btn-primary oauth" %>
 <%if session[:access_token] %>
 
 <%= @signout %>

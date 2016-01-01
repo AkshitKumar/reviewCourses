@@ -1,15 +1,40 @@
 <% @depts = Dept.all %>
+<% @profs = Prof.all %>
+<% @sems = Sem.all %>
 <div class="sidenav col-md-3">
-	<h4>List by Department</h4>
-	<form id="menu-content" class="menu-content form-group">
+	<%= form_tag('/courses' , id: "category", method: :get, remote: true) do %>
+	<div class="panel panel-primary">
+	<div class="panel-heading list" data-value="dept">List by Department<b class="caret"></b></div>
+	<div class="panel-body menu-content" id="dept">
 	<% @depts.each do |dept| %>
 			<li class="side-list">
-				<%= radio_button_tag 'dept_id',dept.id,false,
-				data: {remote: true,url: url_for(action: :index, dept_id: dept.id),dept_id: dept.id}
-				%>
+				<%= check_box_tag 'dept_id',dept.id,false,class: "dept_id" %>
 				<%= h dept.label %>
       </li>
 	<% end %>
-	</form> 
-
+	</div>
+	</div>
+	<div class="panel panel-primary">
+	<div class="panel-heading list" data-value="prof">List by Professor<b class="caret"></b></div>
+	<div class="panel-body menu-content" id="prof">
+	<% @profs.each do |prof| %>
+			<li class="side-list">
+				<%= check_box_tag 'prof',prof.name,false,class: "prof" %>
+				<%= h prof.name %>
+      </li>
+	<% end %>
+	</div>
+	</div>
+	<div class="panel panel-primary">
+	<div class="panel-heading list" data-value="sem">List by Semester<b class="caret"></b></div>
+	<div class="panel-body menu-content" id="sem">
+	<% @sems.each do |sem| %>
+			<li class="side-list">
+				<%= check_box_tag 'sem',sem.id,false,class: "sem" %>
+				<%= h sem.label %>
+      </li>
+	<% end %>
+	</div>
+	</div>
+	<% end %>
 </div>

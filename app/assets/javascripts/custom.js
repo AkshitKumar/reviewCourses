@@ -1,7 +1,59 @@
 $(function() {
+    
     $(".sort_paginate_ajax").on("click",".pagination a", function(){
         $.getScript(this.href);
         return false;
+    });
+    
+    $(".list").click(function(){
+        var id = $(this).attr('data-value');
+        $('div#'+id).slideToggle("slow");
+    });
+    
+    $(".dept_id").each(function()
+    {
+    $(this).change(function()
+        {
+        if($(this).is(':checked')){ 
+         $(".dept_id").prop('checked',false);
+         $(this).prop('checked',true);
+         $('form#category').trigger('submit.rails');
+        }
+        else{
+         $(this).prop('checked',false);   
+         $('form#category').trigger('submit.rails');   
+        }
+        });
+    });
+    $(".prof").each(function()
+    {
+    $(this).change(function()
+        {
+         if($(this).is(':checked')){ 
+         $(".prof").prop('checked',false);
+         $(this).prop('checked',true);
+         $('form#category').trigger('submit.rails');
+        }
+        else{
+         $(this).prop('checked',false);   
+         $('form#category').trigger('submit.rails');   
+        }
+        });
+    });
+    $(".sem").each(function()
+    {
+    $(this).change(function()
+        {
+         if($(this).is(':checked')){ 
+         $(".sem").prop('checked',false);
+         $(this).prop('checked',true);
+         $('form#category').trigger('submit.rails');
+        }
+        else{
+         $(this).prop('checked',false);   
+         $('form#category').trigger('submit.rails');   
+        }
+        });
     });
  // Below is the name of the textfield that will be autocomplete    
     $('#search').autocomplete({
@@ -36,3 +88,18 @@ $(function() {
                 .appendTo( ul );
         };
     });
+    
+    $( document ).tooltip({
+      position: {
+        my: "center+15 bottom",
+        at: "center top-15",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+    }
+});

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :sems
+  resources :profs
   resources :depts
   resources :search_suggestions
   resources :courses do

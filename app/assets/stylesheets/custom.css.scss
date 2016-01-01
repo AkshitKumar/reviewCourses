@@ -29,6 +29,7 @@
 
 #search-form{
 	display: table;
+	padding: 7px 0 0 15px;
 }
 
 .ui-autocomplete {
@@ -42,7 +43,7 @@ background:white;
 }
 
 .menu-content{
-	height: 500px;
+	max-height: 250px;
 	overflow-y: auto;
 }
 
@@ -72,15 +73,111 @@ tr.side-list{
 	display: none;
 }
 
-.newcourse{
-	position: fixed;
-	bottom:30px;
-	right:30px;
-}
-
 .tdnew{
 	padding:0px;
 	font-size:13px;
 	vertical-align:inherit;
 	border:0;
 }
+
+.panel{
+  margin-bottom: 10px;
+}
+
+.list{
+	cursor: pointer;
+	font-weight: bold;
+  background: #0E79B6 !important;
+  border-color: #0E79B60 !important;
+}
+
+.caret{
+	float: right;
+    margin-top: 5px;
+    border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+
+.newcourse{
+	position: fixed;
+	bottom:40px;
+	right:50px;
+	box-shadow: rgba(14,121,182,0.6) 0px 0px 0px 0px;
+    background: #0E79B6;
+    border-radius: 50%;
+    padding: 0;
+    height: 45px;
+    width: 45px;
+    -webkit-transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+	-moz-transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+	-ms-transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+	-o-transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+	transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+    &:hover{
+    	box-shadow: rgba(14,121,182,0.6) 0px 0px 0px 6px;
+    	background: #0E79B6;
+    }
+}
+
+.glyphicon{
+	margin-top: 10px;
+	color: white;
+	font-size: 18px;	
+}
+
+.ui-tooltip, .arrow:after {
+    background: white;
+    border: 2px solid #0E79B6;
+  }
+  .ui-tooltip {
+    //padding: 10px 20px;
+    color: #0E79B6;
+    border-radius: 5px;
+    font: 14px "Helvetica Neue", Sans-Serif;
+    //text-transform: uppercase;
+    box-shadow: 0 0 7px #0E79B6;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }
+
+  .pagination{
+    margin: 0;
+  }
+
+  .oauth{
+  	  &:hover,&:visited{
+  		color: white;
+  	}
+  }
+

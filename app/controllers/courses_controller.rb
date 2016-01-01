@@ -19,7 +19,10 @@ class CoursesController < ApplicationController
                  fields: [{name: :word_start},:prof,:number] ,
                  match: :word_start
     else
-      @courses = Course.where(dept_id: params[:dept_id]).paginate(:page => params[:page], :per_page => 15)
+      id = params[:dept_id]
+      prof = params[:prof]
+      sem = params[:sem]
+      @courses = Course.categorize(id,prof,sem).order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end  
   end
 
@@ -65,6 +68,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
+        %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
@@ -79,6 +83,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
+      %x(bundle exec rake search_suggestions:index)
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end

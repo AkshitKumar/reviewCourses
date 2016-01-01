@@ -100,6 +100,13 @@ class CoursesController < ApplicationController
         redirect_to root_url, alert: "Sorry, only admins can do that"
       end
     end
+
+    def authenticate_user!
+      unless logged_in?
+        redirect_to root_url, alert: "You need to sign in before continuing."
+      end
+    end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:name, :number, :prof, :credits)

@@ -1,5 +1,30 @@
+$.fn.stars = function() {
+    return $(this).each(function() {
+        var val = parseFloat($(this).html());
+        var size = Math.max(1, (Math.min(5, val))) * 16;
+        var $span = $('<span />').width(size);
+        $(this).html($span);
+    });
+}
+
 $(function() {
     
+    $('span.stars').stars();
+    
+    var star = $('#review_rating').val();
+    if(star>0){
+      $('span#'+star).css({'color': '#F3DE06'});
+      $('span#'+star+' ~ span').css({'color': '#F3DE06'});
+    }
+    
+    $('.rating span').click(function(){
+      var id = $(this).attr('id');
+      $('#review_rating').val(id);
+      $('.rating span').css({'color': 'grey'});
+      $('span#'+id).css({'color': '#F3DE06'});
+      $('span#'+id+' ~ span').css({'color': '#F3DE06'});
+    })
+
     $(".sort_paginate_ajax").on("click",".pagination a", function(){
         $.getScript(this.href);
         return false;
@@ -7,7 +32,7 @@ $(function() {
     
     $(".list").click(function(){
         var id = $(this).attr('data-value');
-        $('div#'+id).slideToggle("slow");
+        $('div#'+id).slideToggle("fast");
     });
     
     $(".dept_id").each(function()

@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [ :edit, :update, :destroy]
   before_action :set_course
   before_action :authenticate_user!
-  before_action :check_user, only: [:edit, :update , :destroy]
+  before_action :check_review, only: [:edit, :update , :destroy]
   # GET /reviews
   # GET /reviews.json
 
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to course_path(@course), notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -72,6 +72,13 @@ class ReviewsController < ApplicationController
         redirect_to root_url , alert: "Sorry this review belongs to someone else"
       end
     end
+
+    def authenticate_user!
+      unless logged_in?
+        redirect_to root_url, alert: "You need to sign in before continuing."
+      end
+    end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :comment)

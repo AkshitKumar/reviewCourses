@@ -13,6 +13,42 @@
 
 ActiveRecord::Schema.define(version: 20160101051916) do
 
+<<<<<<< HEAD
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number"
+    t.string   "prof"
+    t.integer  "credits"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oauths", force: :cascade do |t|
+    t.string   "only"
+    t.string   "create"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+||||||| merged common ancestors
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number"
+    t.string   "prof"
+    t.integer  "credits"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oauth", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "oauths", force: :cascade do |t|
+    t.string   "only"
+    t.string   "create"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
   create_table "admins", force: :cascade do |t|
     t.integer  "adminid",    limit: 4
     t.datetime "created_at",           null: false
@@ -28,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160101051916) do
     t.integer  "sem",        limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+>>>>>>> 1e07399d72f14457b2b77f9cf2d1ac23fc4068ba
   end
 
   create_table "depts", force: :cascade do |t|

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :courses do
     resources :reviews , except: [:show, :index]
   end
+  
+  post 'users' => 'users#following'
+
   get 'pages/about'
 
   get 'pages/contact'

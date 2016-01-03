@@ -6,6 +6,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :name
       t.string :prof
       t.integer :credits
+      t.integer :sem
 
       t.timestamps null: false
     end

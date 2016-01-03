@@ -1,0 +1,2 @@
+class SemsController < ApplicationController
+end

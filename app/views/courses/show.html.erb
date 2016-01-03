@@ -6,7 +6,11 @@
 
 		<p>
  		<strong>Rating:</strong>
-  		<%= @avg_ratings %>
+  		<% if @avg_ratings < 1 %>
+ 		Not yet rated!
+ 		<% else %>
+  		<span class="stars"><%= @avg_ratings %></span>
+  		<% end %>
 		</p>
 
 		<p> <%= "#{@reviews.length} reviews"%> </p>
@@ -47,7 +51,7 @@
 							<p> <%= review.created_at.strftime("%-d/%-m/%y")%> </p>
 						</td>
 						<td>
-							<p> <%= review.rating %> </p>
+							<p><span class="stars"><%= review.rating %></span></p>
 							<p> <%= h(review.comment).gsub(/\n/,'<br/>').html_safe %> </p>
 
 							<% if logged_in? %>

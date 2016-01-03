@@ -1,6 +1,3 @@
-var bootstrapTooltip = $.fn.tooltip.noConflict();
-$.fn.bstooltip = bootstrapTooltip;
-
 $.fn.stars = function() {
     return $(this).each(function() {
         var val = parseFloat($(this).html());
@@ -11,6 +8,8 @@ $.fn.stars = function() {
 }
 
 $(function() {
+
+    $('.newcourse').tooltip();
     
     $('span.stars').stars();
     
@@ -117,17 +116,3 @@ $(function() {
         };
     });
     
-    $( document ).tooltip({
-      position: {
-        my: "center+15 bottom",
-        at: "center top-15",
-        using: function( position, feedback ) {
-          $( this ).css( position );
-          $( "<div>" )
-            .addClass( "arrow" )
-            .addClass( feedback.vertical )
-            .addClass( feedback.horizontal )
-            .appendTo( this );
-        }
-    }
-});

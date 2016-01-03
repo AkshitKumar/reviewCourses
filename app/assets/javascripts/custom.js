@@ -1,3 +1,6 @@
+var bootstrapTooltip = $.fn.tooltip.noConflict();
+$.fn.bstooltip = bootstrapTooltip;
+
 $.fn.stars = function() {
     return $(this).each(function() {
         var val = parseFloat($(this).html());

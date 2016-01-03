@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101051916) do
+ActiveRecord::Schema.define(version: 20160103094015) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "adminid",    limit: 4
@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(version: 20160101051916) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "follow",     limit: 255
   end
 
 end

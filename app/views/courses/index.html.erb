@@ -1,3 +1,7 @@
+<% if logged_in? %>
+<%= render 'layouts/follow' %>
+<% end %>
+
 <%= render 'layouts/sidebar' %> 
 <div class = "sort_paginate_ajax col-md-9"><%= render 'courses' %></div>
 <br>

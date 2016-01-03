@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20160101051916) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.integer  "dept_id",    limit: 4
     t.string   "number",     limit: 255
+    t.string   "name",       limit: 255
     t.string   "prof",       limit: 255
     t.integer  "credits",    limit: 4
+    t.integer  "sem",        limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

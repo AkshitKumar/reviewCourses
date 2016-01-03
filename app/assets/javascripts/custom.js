@@ -1,5 +1,8 @@
 $(function() {
-
+    $(".sort_paginate_ajax").on("click",".pagination a", function(){
+        $.getScript(this.href);
+        return false;
+    });
  // Below is the name of the textfield that will be autocomplete    
     $('#search').autocomplete({
  // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
@@ -8,7 +11,7 @@ $(function() {
             source: '/search_suggestions',
   // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the term.
             focus: function(event, ui) {
-                $('#search').val(ui.item.term);
+                $('#search').val(ui.item.term_type);
                 return false;
             },
  // Once a value in the drop down list is selected, do the following:

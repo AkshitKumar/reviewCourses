@@ -30,3 +30,57 @@
 #search-form{
 	display: table;
 }
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+
+ .sidenav{
+background:white;
+}
+
+.menu-content{
+	height: 500px;
+	overflow-y: auto;
+}
+
+.side-list,.side-sublist{
+list-style-type:none;
+}
+
+.side-a,.side-b{
+color:#2C3E50;
+font-weight:bold;
+}
+
+.side-a:hover,.side-b:hover,.side-a:active,.side-b:active{
+text-decoration:none;
+color:#2C3E50;
+}
+
+.active{
+font-weight:bold;
+}
+
+.side-list{
+padding:5px 0px 0px 0px;
+}
+
+tr.side-list{
+	display: none;
+}
+
+.newcourse{
+	position: fixed;
+	bottom:30px;
+	right:30px;
+}
+
+.tdnew{
+	padding:0px;
+	font-size:13px;
+	vertical-align:inherit;
+	border:0;
+}

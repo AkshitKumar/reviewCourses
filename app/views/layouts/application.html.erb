@@ -9,6 +9,9 @@
 <body>
 	<!-- Embedded Ruby -->
 	<%= render 'layouts/navbar' %>
+	<% if logged_in? %>
+		<%= render 'layouts/follow' %>
+	<% end %>
 	<div class="container-fluid">
 		<% flash.each do |name, msg| %>
 			<% if msg.is_a?(String) %>

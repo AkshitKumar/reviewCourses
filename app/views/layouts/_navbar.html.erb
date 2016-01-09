@@ -28,6 +28,12 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "Edit Choices", '', "data-target" => "#myModal","data-toggle"=> "modal" %></li>
+          <li><% @unreadnotifications = current_user.notifications.where(read: false) %>
+            <%= link_to "Feed", notifications_path %>
+            <% if @unreadnotifications.count != 0 %>
+            <div class="bubble"><%= @unreadnotifications.count %></div>
+            <% end %>
+          </li>
           <li><%= current_user.fullname %></li>
           <li><%= link_to "Log out", logout_path , method: "delete" %></li>            
     <% end %>

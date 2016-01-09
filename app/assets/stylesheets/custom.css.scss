@@ -121,12 +121,40 @@ tr.side-list{
     	box-shadow: rgba(14,121,182,0.6) 0px 0px 0px 6px;
     	background: #0E79B6;
     }
+
+  .glyphicon{
+    margin-top: 10px;
+    color: white;
+    font-size: 18px;  
+  }
 }
 
-.glyphicon{
-	margin-top: 10px;
-	color: white;
-	font-size: 18px;	
+.glyphicon-update {
+  @extend .glyphicon-edit;
+}
+
+.glyphicon-create {
+  @extend .glyphicon-plus;
+}
+
+.glyphicon-destroy {
+  @extend .glyphicon-remove;
+}
+
+.bubble {
+    position: relative;
+    top: -45px;
+    left: 45px;
+    background-color: red;
+    color: white;
+    width: 15px;
+    line-height: 15px;
+    height: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: .85em;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px gray;
 }
 
 .newcourse + .tooltip > .tooltip-inner {

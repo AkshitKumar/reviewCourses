@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notifications
   resources :courses do
     resources :reviews , except: [:show, :index]
   end

@@ -53,6 +53,15 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
+        User.find_each do |user|
+          @check = user.follow
+          if  !@check.nil?
+            @check = @check.split(",")
+          end
+          if  @check.include?(@course.dept_id.to_s)
+            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "create")
+          end
+        end
         %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
@@ -68,6 +77,15 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
+        User.find_each do |user|
+          @check = user.follow
+          if  !@check.nil?
+            @check = @check.split(",")
+          end
+          if  @check.include?(@course.dept_id.to_s)
+            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "update")
+          end
+        end
         %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
@@ -81,6 +99,15 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    User.find_each do |user|
+      @check = user.follow
+      if  !@check.nil?
+        @check = @check.split(",")
+      end
+      if  @check.include?(@course.dept_id.to_s)
+        user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "destroy")
+      end
+    end
     @course.destroy
     respond_to do |format|
       %x(bundle exec rake search_suggestions:index)

@@ -25,6 +25,15 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
+        User.find_each do |user|
+          @check = user.follow
+          if  !@check.nil?
+            @check = @check.split(",")
+          end
+          if  @check.include?(@course.dept_id.to_s)
+            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
+          end
+        end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
@@ -39,6 +48,15 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
+        User.find_each do |user|
+          @check = user.follow
+          if  !@check.nil?
+            @check = @check.split(",")
+          end
+          if  @check.include?(@course.dept_id.to_s)
+            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
+          end
+        end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
@@ -51,6 +69,15 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
+    User.find_each do |user|
+      @check = user.follow
+      if  !@check.nil?
+        @check = @check.split(",")
+      end
+      if  @check.include?(@course.dept_id.to_s)
+        user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
+      end
+    end
     @review.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Review was successfully destroyed.' }

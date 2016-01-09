@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_course
   before_action :authenticate_user!
   before_action :check_review, only: [:edit, :update , :destroy]
+  after_action :mail , only: [:create]
   # GET /reviews
   # GET /reviews.json
 
@@ -24,7 +25,6 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        AdminMail.review_mail(@review.course_id,@review.user_id).deliver_now
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
@@ -83,5 +83,8 @@ class ReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :comment)
+    end
+    def mail
+      AdminMail.review_mail(@review.course_id,@review.user_id).deliver_now
     end
 end

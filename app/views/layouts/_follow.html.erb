@@ -7,7 +7,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <% unless logged_in? && !current_user.follow? %>
+        <% unless logged_in? && current_user.follow.blank? %>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <% end %>
         <h4 class="modal-title">Follow few Departments</h4>

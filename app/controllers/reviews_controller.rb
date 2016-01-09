@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
+        AdminMail.review_mail(@review.course_id,@review.user_id).deliver_now
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else

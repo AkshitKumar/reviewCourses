@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109184141) do
+ActiveRecord::Schema.define(version: 20160110074700) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "adminid",    limit: 4
@@ -55,12 +55,16 @@ ActiveRecord::Schema.define(version: 20160109184141) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "rating",     limit: 4
-    t.text     "comment",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "user_id",    limit: 4
-    t.integer  "course_id",  limit: 4
+    t.integer  "rating",          limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "user_id",         limit: 4
+    t.integer  "course_id",       limit: 4
+    t.text     "grading",         limit: 65535
+    t.text     "learning",        limit: 65535
+    t.text     "apply",           limit: 65535
+    t.text     "prerequisites",   limit: 65535
+    t.text     "usefulforcareer", limit: 65535
   end
 
   create_table "search_suggestions", force: :cascade do |t|

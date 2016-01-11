@@ -12,6 +12,15 @@
     </div>
   <% end %>
 
+  <div class="jumbotron">
+  <h3>Instructions for writing reviews</h3> <br/>
+  <ul> 
+    <li> Some instructions for the reviews </li>
+    <li> Some instructions for the reviews </li>
+    <li> Some instructions for the reviews </li>
+    <li> Some instructions for the reviews </li>
+  </ul>
+</div>
   <div class="form-group">
     <%= f.label :rating %><br>
     <%= f.hidden_field(:rating, :value => @review.rating) %>
@@ -25,9 +34,30 @@
   </div>
   <br><br>
   <div class="form-group">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment  , class: "form-control"%>
+    <p> Grading </p>p><br>
+    <%= f.text_area :grading , class: "form-control"%>
   </div>
+
+   <div class="form-group">
+    <p> What did you learn out of this course? </p> <br>
+    <%= f.text_area :learning  , class: "form-control"%>
+  </div>
+
+   <div class="form-group">
+    <p> Where can you apply this? </p><br>
+    <%= f.text_area :apply  , class: "form-control"%>
+  </div>
+
+   <div class="form-group">
+    <p> Pre-requisites for the course </p><br>
+    <%= f.text_area :prerequisites  , class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <p> How will course be useful for your career? </p><br>
+    <%= f.text_area :usefulforcareer  , class: "form-control"%>
+  </div>
+
   <div class="form-group">
     <%= f.submit class: "btn btn-primary"%>
   </div>

@@ -109,7 +109,7 @@ class ReviewsController < ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comment)
+      params.require(:review).permit(:rating, :grading, :learning, :apply, :prerequisites, :usefulforcareer)
     end
     def mail
       AdminMail.review_mail(@review.course_id,@review.user_id).deliver_now

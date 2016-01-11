@@ -52,8 +52,11 @@
 						</td>
 						<td>
 							<p><span class="stars"><%= review.rating %></span></p>
-							<p> <%= h(review.comment).gsub(/\n/,'<br/>').html_safe %> </p>
-
+							<p> Grading: <%= h(review.grading).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> Learning: <%= h(review.learning).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> Where it can be applied: <%= h(review.apply).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> Prerequisites: <%= h(review.prerequisites).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> How will it be useful: <%= h(review.usefulforcareer).gsub(/\n/,'<br/>').html_safe %> </p>
 							<% if logged_in? %>
 								<% if (review.user == current_user) || admin? %>
 									<%= link_to "Edit",edit_course_review_path(@course,review)%>

@@ -27,11 +27,12 @@ class ReviewsController < ApplicationController
       if @review.save
         User.find_each do |user|
           @check = user.follow
+          # raise @check.inspect
           if  !@check.nil?
             @check = @check.split(",")
-          end
-          if  @check.include?(@course.dept_id.to_s)
-            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
+            if  @check.include?(@course.dept_id.to_s)
+              user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
+            end
           end
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
@@ -52,9 +53,9 @@ class ReviewsController < ApplicationController
           @check = user.follow
           if  !@check.nil?
             @check = @check.split(",")
-          end
-          if  @check.include?(@course.dept_id.to_s)
-            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
+            if  @check.include?(@course.dept_id.to_s)
+              user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
+            end
           end
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully updated.' }
@@ -73,9 +74,10 @@ class ReviewsController < ApplicationController
       @check = user.follow
       if  !@check.nil?
         @check = @check.split(",")
-      end
-      if  @check.include?(@course.dept_id.to_s)
-        user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
+        # raise user.inspect
+        if  @check.include?(@course.dept_id.to_s)
+          user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
+        end
       end
     end
     @review.destroy

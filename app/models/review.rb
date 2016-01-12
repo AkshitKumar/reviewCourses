@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :course
-	validates :rating, :comment, presence: true
+	validates :rating, :grading, :learning, :apply, :prerequisites, :usefulforcareer, presence: true
 	validates :rating, numericality: {
 		only_integer: true,
 		greater_than_or_equal_to: 1,

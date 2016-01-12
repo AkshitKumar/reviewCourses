@@ -1,0 +1,53 @@
+<% if notif.notif_type=="Course" %>
+
+<% if notif.action == "create" %>
+	added a course 
+	<% if @course %>
+		<%= link_to @course.name, @course %>
+	<% else %>
+		which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "update" %>
+	updated a course notif.activity
+	<% if @course %>
+		<%= link_to @course.name, @course %>
+	<% else %>
+		which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "destroy" %>
+	removed a course. 
+<% end %>
+
+<% else %>
+<% if notif.action == "create" %>
+	added a review to  
+	<% if @course %>
+		<%= link_to @course.name, @course %>
+	<% else %>
+		a course which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "update" %>
+	updated a review to  
+	<% if @course %>
+		<%= link_to @course.name, @course %>
+	<% else %>
+		a course which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "destroy" %>
+	removed a review to 
+	<% if @course %>
+		<%= link_to @course.name, @course %>
+	<% else %>
+		a course which has been removed.
+	<% end %> 
+<% end %>
+
+<% end %>

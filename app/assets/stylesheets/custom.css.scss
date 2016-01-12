@@ -142,8 +142,8 @@ tr.side-list{
 }
 
 .bubble {
-    position: relative;
-    top: -45px;
+    position: absolute;
+    top: 5px;
     left: 45px;
     background-color: red;
     color: white;
@@ -157,6 +157,31 @@ tr.side-list{
     box-shadow: 1px 1px 1px gray;
 }
 
+.activity {
+  border-bottom: solid 1px #CCC;
+  padding: 16px 0;
+  em {
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  a{
+   color: #337ab7;
+  }
+}
+
+.activity1 {
+  border-bottom: solid 1px #CCC;
+  padding: 5px 0;
+  em {
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  a:hover{
+    background: rgba(14,121,182,0.2) !important;
+  }
+}
 .newcourse + .tooltip > .tooltip-inner {
     background-color: white; 
     color: #0E79B6; 
@@ -204,4 +229,20 @@ span.stars span {
 
 .rating span:hover, .rating span:hover ~ span{
     color: #F3DE06;
+}
+
+.navbar-default .navbar-nav > .open > a{
+  background-color: #0e79b6;
+  &:hover,&:focus{
+    background-color: #0E6FA7;
+    color: white;
+  }
+}
+
+.dropdown-menu > li > a{
+  color: #0e79b6;
+  &:hover,&:focus{
+    color: #0e79b6;
+    background: rgba(14,121,182,0.2);
+  }
 }

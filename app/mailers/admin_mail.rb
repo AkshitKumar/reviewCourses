@@ -1,8 +1,8 @@
 class AdminMail < ApplicationMailer
     def review_mail(course,user)
-          @user = user
-          @course=course
+          @user = User.find_by_id(user)
+          @course= Course.find_by_id(course)
         mail( :to => "sac_speaker@smail.iitm.ac.in",
-    :subject => "#{@user['fullname'].titleize}Review on Course" )
+    :subject => "Course Review by #{@user['fullname'].titleize}" )
     end
 end

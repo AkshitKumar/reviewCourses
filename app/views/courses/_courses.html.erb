@@ -5,7 +5,7 @@
       <th>Number</th>
       <th>Prof</th>
       <th>Credits</th>
-      <% if admin? %>
+      <% if current_user.admin? %>
         <th colspan="2"></th>
       <% end %>
     </tr>
@@ -18,7 +18,7 @@
         <td><%= course.number %></td>
         <td><%= course.prof %></td>
         <td><%= course.credits %></td>
-        <% if admin? %>
+        <% if current_user.admin? %>
           <td><%= link_to 'Edit', edit_course_path(course) , class: "btn btn-link tdnew" %></td>
           <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-link tdnew" %></td>
         <% end %>

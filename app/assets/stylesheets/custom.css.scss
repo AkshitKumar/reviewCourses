@@ -147,13 +147,14 @@ tr.side-list{
     left: 45px;
     background-color: red;
     color: white;
-    width: 15px;
+    width: auto;
     line-height: 15px;
     height: 15px;
+    padding: 0 4px;
     text-align: center;
     font-weight: bold;
     font-size: .85em;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px gray;
 }
 
@@ -166,7 +167,10 @@ tr.side-list{
     padding-left: 5px;
   }
   a{
-   color: #337ab7;
+   color: black;
+  }
+  &:hover{
+    background: rgba(14,121,182,0.2) !important;
   }
 }
 
@@ -178,8 +182,15 @@ tr.side-list{
     font-size: 12px;
     padding-left: 5px;
   }
-  a:hover{
+  &:hover{
     background: rgba(14,121,182,0.2) !important;
+  }
+}
+
+.seeall{
+  text-align: center;
+  &:hover{
+    background: rgba(14,121,182,0.2);
   }
 }
 .newcourse + .tooltip > .tooltip-inner {
@@ -239,10 +250,36 @@ span.stars span {
   }
 }
 
+.dropdown-menu{
+  padding: 0;
+}
 .dropdown-menu > li > a{
   color: #0e79b6;
   &:hover,&:focus{
     color: #0e79b6;
-    background: rgba(14,121,182,0.2);
+    background: transparent;
   }
+}
+
+.dropdown-menu:before {
+  position: absolute;
+  top: -7px;
+  right: 25px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.dropdown-menu:after {
+  position: absolute;
+  top: -6px;
+  right: 26px;
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
 }

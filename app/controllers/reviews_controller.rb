@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_course
   before_action :authenticate_user!
   before_action :check_review, only: [:edit, :update , :destroy]
-  after_action :mail , only: [:create]
+  after_action :mail , only: [:create, :update]
   # GET /reviews
   # GET /reviews.json
 
@@ -25,7 +25,9 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        User.find_each do |user|
+        @users = User.where.not(id: current_user.id, admin: 1)
+        @admins = User.where.not(id: current_user.id, admin: 0)
+        for user in @users
           @check = user.follow
           # raise @check.inspect
           if  !@check.nil?
@@ -34,6 +36,9 @@ class ReviewsController < ApplicationController
               user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
             end
           end
+        end
+        for admin in @admins
+          admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
@@ -49,14 +54,20 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        User.find_each do |user|
+        @users = User.where.not(id: current_user.id, admin: 1)
+        @admins = User.where.not(id: current_user.id, admin: 0)
+        for user in @users
           @check = user.follow
+          # raise @check.inspect
           if  !@check.nil?
             @check = @check.split(",")
             if  @check.include?(@course.dept_id.to_s)
               user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
             end
           end
+        end
+        for admin in @admins
+          admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
@@ -70,16 +81,21 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    User.find_each do |user|
-      @check = user.follow
-      if  !@check.nil?
-        @check = @check.split(",")
-        # raise user.inspect
-        if  @check.include?(@course.dept_id.to_s)
-          user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
-        end
-      end
-    end
+    # @users = User.where.not(id: current_user.id, admin: 1)
+    # @admins = User.where.not(id: current_user.id, admin: 0)
+    # for user in @users
+    #   @check = user.follow
+    #   # raise @check.inspect
+    #   if  !@check.nil?
+    #     @check = @check.split(",")
+    #     if  @check.include?(@course.dept_id.to_s)
+    #       user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
+    #     end
+    #   end
+    # end
+    # for admin in @admins
+    #   admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "destroy")
+    # end
     @review.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Review was successfully destroyed.' }

@@ -19,14 +19,4 @@ module SessionsHelper
 		session.delete(:user_id)
 		@current_user = nil
 	end
-	def admin?
-	#	user = current_user
-	#	id = current_user.user_id
-		id = session[:user_id]
-		if Admin.find_by(adminid: id)
-			!nil
-		else
-			false
-		end
-	end
 end

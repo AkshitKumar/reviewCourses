@@ -58,7 +58,7 @@
 							<p> <b>Prerequisites:</b> <%= h(review.prerequisites).gsub(/\n/,'<br/>').html_safe %> </p>
 							<p> <b>How will it be useful:</b> <%= h(review.usefulforcareer).gsub(/\n/,'<br/>').html_safe %> </p>
 							<% if logged_in? %>
-								<% if (review.user == current_user) || admin? %>
+								<% if (review.user == current_user) || current_user.admin? %>
 									<%= link_to "Edit",edit_course_review_path(@course,review)%>
 									<%= link_to "Delete",course_review_path(@course,review), method: :delete %>
 								<% end %>

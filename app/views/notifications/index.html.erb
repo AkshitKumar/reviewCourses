@@ -2,13 +2,7 @@
 
 <% if @notifs.first %>
 <% @notifs.each do |notif| %>
-	<div class="activity">
-		<% @course = Course.find_by_id(notif.course_id) %>
-		<span class="glyphicon glyphicon-<%= notif.action %>"></span>
-        <small class="text-muted"><%= notif.created_at.in_time_zone("Chennai").strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-		<b><%= User.find_by_id(notif.owner_id).fullname.titleize if notif.owner_id %></b>
-		<%= render partial: 'activity', locals: { notif: notif} %>	
-	</div>
+	<%= render partial: 'activity', locals: { notif: notif} %>	
 <% end %>
 <% else %>
 	<div class="activity">Nothing to show yet!</div>

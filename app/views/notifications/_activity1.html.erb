@@ -1,7 +1,7 @@
 <% if notif.read %>
-<li class="activity1" style="background: #e7e7e7;">
-<% else %>
 <li class="activity1">
+<% else %>
+<li class="activity1" style="background: #e7e7e7;">
 <% end %>
 <% @course = Course.find_by_id(notif.course_id) %>
 <% if @course %>
@@ -11,7 +11,13 @@
 <% end %>
 <span class="glyphicon glyphicon-<%= notif.action %>"></span>
 <small class="text-muted"><%= notif.created_at.in_time_zone("Chennai").strftime('%H:%M %-d %B %Y') %></small><br/>
-<b><%= User.find_by_id(notif.owner_id).fullname.titleize if notif.owner_id %></b>
+<% @owner = User.find_by_id(notif.owner_id) %>
+<b><% if @owner.admin? %>
+	Admin
+	<% else %>
+	<%= @owner.fullname.titleize if notif.owner_id %>
+	<% end %>
+</b>
 <% if notif.notif_type=="Course" %>
 
 <% if notif.action == "create" %>

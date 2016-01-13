@@ -8,6 +8,9 @@ $.fn.stars = function() {
 }
 
 $(function() {
+    $('#closeInstruct').click(function(){
+      $('.instruct').hide('fade');
+    });
 
     $('.newcourse').tooltip();
     

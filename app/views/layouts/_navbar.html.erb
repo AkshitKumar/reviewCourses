@@ -30,7 +30,10 @@
           <% @unreadnotifications = current_user.notifications.where(read: false) %>
           <% @notifications = current_user.notifications.order("created_at desc").limit(5) %>
           <li class="dropdown">
-            <%= link_to "Feed", '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false %><% if @unreadnotifications.count != 0 %>
+            <%= link_to '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false do %>
+            <span class="glyphicon glyphicon-bell"></span>
+            <% end %>
+            <% if @unreadnotifications.count != 0 %>
             <div class="bubble"><%= @unreadnotifications.count %></div>
             <% end %>
             <ul class="dropdown-menu">
@@ -45,7 +48,7 @@
               <li class="seeall" ><%= link_to "See all",  notifications_path %></li>  
             </ul>
           </li>
-          <li class="dropdown"><%= link_to "#{current_user.fullname.titleize} <b class='caret'></b>".html_safe, '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false %>
+          <li class="dropdown"><%= link_to current_user.fullname.titleize, '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false %>
             <ul class="dropdown-menu">
               <% unless current_user.admin? %>
               <li class="activity1"><%= link_to "Edit Choices", '', "data-target" => "#myModal","data-toggle"=> "modal" %></li>

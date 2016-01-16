@@ -8,7 +8,7 @@ default: &default
   adapter: mysql2
   encoding: utf8
   username: root
-  password: password
+  password: 
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
 
@@ -16,7 +16,7 @@ development:
   <<: *default
   database: coursereview_development
   username: root
-  password: password
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,16 +25,16 @@ test:
   <<: *default
   database: coursereview_test
   username: root
-  password: password
+  password: 
 
 production:
   <<: *default
   database: coursereview_production
   username: root
-  password: password
+  password: 
 
 students_1415:
   <<: *default
   database: students_1415
   username: root
-  password: password
+  password: 

@@ -1,2 +1,3 @@
-<%= @user.fullname.titleize %> reviewed on course <%= @course.name %>.<br>
-Click here to view <%=link_to "#{@course.name}" , @course %>
+Dear admin,
+<%= @user.fullname.titleize %> reviewed on course <%= @course['name'].titleize %>.
+Click <%= @course%> to review the course.

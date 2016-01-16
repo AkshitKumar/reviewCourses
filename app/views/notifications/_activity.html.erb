@@ -1,0 +1,77 @@
+<% if notif.read %>
+<div class="activity">
+<% else %>
+<div class="activity" style="background: #e7e7e7;">
+<% end %>
+<% @course = Course.find_by_id(notif.course_id) %>
+<% if @course %>
+<a href="<%= url_for(@course) %>">
+<% else %>
+<a style="cursor: default;">
+<% end %>
+<div class="notif-wrapper">
+<span class="glyphicon glyphicon-<%= notif.action %>"></span>
+<small class="text-muted"><%= notif.created_at.in_time_zone("Chennai").strftime('%H:%M:%S %-d %B %Y') %></small><br/>
+<% @owner = User.find_by_id(notif.owner_id) %>
+<b><% if @owner.admin? %>
+	Admin
+	<% else %>
+	<%= @owner.fullname.titleize if notif.owner_id %>
+	<% end %>
+</b>
+<% if notif.notif_type=="Course" %>
+
+<% if notif.action == "create" %>
+	added a course 
+	<% if @course %>
+		<%= @course.name %>
+	<% else %>
+		which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "update" %>
+	updated a course notif.activity
+	<% if @course %>
+		<%= @course.name %>
+	<% else %>
+		which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "destroy" %>
+	removed a course. 
+<% end %>
+
+<% else %>
+<% if notif.action == "create" %>
+	added a review to  
+	<% if @course %>
+		<%= @course.name %>
+	<% else %>
+		a course which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "update" %>
+	updated a review to  
+	<% if @course %>
+		<%= @course.name %>
+	<% else %>
+		a course which has been removed.
+	<% end %>
+<% end %>
+
+<% if notif.action == "destroy" %>
+	removed a review to 
+	<% if @course %>
+		<%= @course.name %>
+	<% else %>
+		a course which has been removed.
+	<% end %> 
+<% end %>
+
+<% end %>
+</div>
+</a>
+</div>

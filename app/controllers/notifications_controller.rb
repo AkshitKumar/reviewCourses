@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
     before_action :mark_as_read
 
 	def index
-		@notifs = current_user.notifications.order("created_at desc")
+		@notifs = current_user.notifications.order("created_at desc").paginate(:page => params[:page], :per_page => 10)
 	end
 
     def mark_as_read

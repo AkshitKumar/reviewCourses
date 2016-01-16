@@ -47,18 +47,18 @@
 				<% @reviews.each do |review| %>
 					<tr>
 						<td>
-							<h4> <%= "#{review.user.first_name.capitalize}" " #{review.user.last_name.capitalize[0]}."%> </h4>
+							<h4> <%= "#{review.user.fullname.titleize}" %> </h4>
 							<p> <%= review.created_at.strftime("%-d/%-m/%y")%> </p>
 						</td>
 						<td>
 							<p><span class="stars"><%= review.rating %></span></p>
-							<p> Grading: <%= h(review.grading).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> Learning: <%= h(review.learning).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> Where it can be applied: <%= h(review.apply).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> Prerequisites: <%= h(review.prerequisites).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> How will it be useful: <%= h(review.usefulforcareer).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> <b>Grading:</b> <%= h(review.grading).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> <b>Learning:</b> <%= h(review.learning).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> <b>Where it can be applied:</b> <%= h(review.apply).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> <b>Prerequisites:</b> <%= h(review.prerequisites).gsub(/\n/,'<br/>').html_safe %> </p>
+							<p> <b>How will it be useful:</b> <%= h(review.usefulforcareer).gsub(/\n/,'<br/>').html_safe %> </p>
 							<% if logged_in? %>
-								<% if (review.user == current_user) || admin? %>
+								<% if (review.user == current_user) || current_user.admin? %>
 									<%= link_to "Edit",edit_course_review_path(@course,review)%>
 									<%= link_to "Delete",course_review_path(@course,review), method: :delete %>
 								<% end %>

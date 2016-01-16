@@ -2,67 +2,9 @@
 
 <% if @notifs.first %>
 <% @notifs.each do |notif| %>
-	<div class="activity">
-		<% @course = Course.find_by_id(notif.course_id) %>
-		<span class="glyphicon glyphicon-<%= notif.action %>"></span>
-        <small class="text-muted"><%= notif.created_at.in_time_zone("Chennai").strftime('%H:%M:%S %-d %B %Y') %></small><br/>
-		<b><%= User.find_by_id(notif.owner_id).fullname if notif.owner_id %></b>
-		<% if notif.notif_type=="Course" %>
-
-<% if notif.action == "create" %>
-	added a course 
-	<% if @course %>
-		<%= link_to @course.name, @course %>
-	<% else %>
-		which has been removed.
-	<% end %>
-<% end %>
-
-<% if notif.action == "update" %>
-	updated a course notif.activity
-	<% if @course %>
-		<%= link_to @course.name, @course %>
-	<% else %>
-		which has been removed.
-	<% end %>
-<% end %>
-
-<% if notif.action == "destroy" %>
-	removed a course. 
-<% end %>
-
-<% else %>
-<% if notif.action == "create" %>
-	added a review to  
-	<% if @course %>
-		<%= link_to @course.name, @course %>
-	<% else %>
-		a course which has been removed.
-	<% end %>
-<% end %>
-
-<% if notif.action == "update" %>
-	updated a review to  
-	<% if @course %>
-		<%= link_to @course.name, @course %>
-	<% else %>
-		a course which has been removed.
-	<% end %>
-<% end %>
-
-<% if notif.action == "destroy" %>
-	removed a review to 
-	<% if @course %>
-		<%= link_to @course.name, @course %>
-	<% else %>
-		a course which has been removed.
-	<% end %> 
-<% end %>
-
-<% end %>
-		
-	</div>
+	<%= render partial: 'activity', locals: { notif: notif} %>	
 <% end %>
 <% else %>
 	<div class="activity">Nothing to show yet!</div>
-<%end%>
+<%end%><br>
+<%= will_paginate @notifs, previous_label: "Newer", next_label: "Older",inner_window: 1, outer_window: 0, renderer: BootstrapPagination::Rails %>

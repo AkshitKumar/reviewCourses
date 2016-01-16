@@ -27,17 +27,39 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to "Edit Choices", '', "data-target" => "#myModal","data-toggle"=> "modal" %></li>
-          <li><% @unreadnotifications = current_user.notifications.where(read: false) %>
-            <%= link_to "Feed", notifications_path %>
+          <% @unreadnotifications = current_user.notifications.where(read: false) %>
+          <% @notifications = current_user.notifications.order("created_at desc").limit(5) %>
+          <li class="dropdown">
+            <%= link_to '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false do %>
+            <span class="glyphicon glyphicon-bell"></span>
+            <% end %>
             <% if @unreadnotifications.count != 0 %>
             <div class="bubble"><%= @unreadnotifications.count %></div>
             <% end %>
+            <ul class="dropdown-menu">
+              <% if @notifications.first %>
+              <% for notif in @notifications %>
+                  <%= render partial: 'notifications/activity1', locals: { notif: notif} %>  
+              <% end %>
+              <% else %>
+              <li><a style="cursor:default;">Nothing to show yet!</a></li>
+              <%end%>
+              
+              <li class="seeall" ><%= link_to "See all",  notifications_path %></li>  
+            </ul>
           </li>
-          <li><%= current_user.fullname %></li>
-          <li><%= link_to "Log out", logout_path , method: "delete" %></li>            
+          <li class="dropdown"><%= link_to current_user.fullname.titleize, '', class: "dropdown-toggle","data-toggle": "dropdown","aria-haspopup": true,"aria-expanded": false %>
+            <ul class="dropdown-menu">
+              <% unless current_user.admin? %>
+              <li class="activity1"><%= link_to "Edit Choices", '', "data-target" => "#myModal","data-toggle"=> "modal" %></li>
+              <% end %>
+              <li class="activity1"><%= link_to "Log out", logout_path , method: "delete" %></li>  
+            </ul>
+          </li>
     <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+

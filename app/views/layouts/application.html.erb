@@ -9,7 +9,7 @@
 <body>
 	<!-- Embedded Ruby -->
 	<%= render 'layouts/navbar' %>
-	<% if logged_in? %>
+	<% if logged_in? && !current_user.admin? %>
 		<%= render 'layouts/follow' %>
 	<% end %>
 	<div class="container-fluid">

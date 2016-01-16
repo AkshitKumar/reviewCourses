@@ -29,6 +29,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    mark_as_read
     @reviews = Review.where(course_id: @course.id).order("created_at DESC")
     if @reviews.blank?
       @avg_ratings = 0
@@ -53,14 +54,20 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        User.find_each do |user|
+        @users = User.where.not(id: current_user.id, admin: 1)
+        @admins = User.where.not(id: current_user.id, admin: 0)
+        for user in @users
           @check = user.follow
+          # raise @check.inspect
           if  !@check.nil?
             @check = @check.split(",")
+            if  @check.include?(@course.dept_id.to_s)
+              user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "create")
+            end
           end
-          if  @check.include?(@course.dept_id.to_s)
-            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "create")
-          end
+        end
+        for admin in @admins
+          admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "create")
         end
         %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -77,14 +84,20 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        User.find_each do |user|
+        @users = User.where.not(id: current_user.id, admin: 1)
+        @admins = User.where.not(id: current_user.id, admin: 0)
+        for user in @users
           @check = user.follow
+          # raise @check.inspect
           if  !@check.nil?
             @check = @check.split(",")
+            if  @check.include?(@course.dept_id.to_s)
+              user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "update")
+            end
           end
-          if  @check.include?(@course.dept_id.to_s)
-            user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "update")
-          end
+        end
+        for admin in @admins
+          admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "update")
         end
         %x(bundle exec rake search_suggestions:index)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -99,15 +112,21 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
-    User.find_each do |user|
-      @check = user.follow
-      if  !@check.nil?
-        @check = @check.split(",")
-      end
-      if  @check.include?(@course.dept_id.to_s)
-        user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, type: "Course", action: "destroy")
-      end
-    end
+    # @users = User.where.not(id: current_user.id, admin: 1)
+    #     @admins = User.where.not(id: current_user.id, admin: 0)
+    #     for user in @users
+    #       @check = user.follow
+    #       # raise @check.inspect
+    #       if  !@check.nil?
+    #         @check = @check.split(",")
+    #         if  @check.include?(@course.dept_id.to_s)
+    #           user.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "destroy")
+    #         end
+    #       end
+    #     end
+    #     for admin in @admins
+    #       admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Course", action: "destroy")
+    #     end
     @course.destroy
     respond_to do |format|
       %x(bundle exec rake search_suggestions:index)
@@ -123,7 +142,7 @@ class CoursesController < ApplicationController
     end
 
     def check_user
-      unless admin?
+      unless current_user.admin?
         redirect_to root_url, alert: "Sorry, only admins can do that"
       end
     end
@@ -137,5 +156,12 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:name, :number, :prof, :credits)
+    end
+
+    def mark_as_read
+        @unread = current_user.notifications.where(read: false, course_id: @course.id)
+        @unread.each do |unread|
+            unread.update_attribute(:read, true)
+        end
     end
 end

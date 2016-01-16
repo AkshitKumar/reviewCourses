@@ -1,6 +1,6 @@
 <%= render 'layouts/sidebar' %> 
 <div class = "sort_paginate_ajax col-md-9"><%= render 'courses' %></div>
 <br>
-<% if admin? %>
+<% if current_user.admin? %>
   <a href="<%= new_course_path %>" title="New Course" class="btn btn-link newcourse"><span class="glyphicon glyphicon-plus"></span></a>
 <% end %>

@@ -8,8 +8,8 @@
 	<div class="panel-body menu-content" id="dept">
 	<% @depts.each do |dept| %>
 			<li class="side-list">
-				<%= check_box_tag 'dept_id',dept.id,false,class: "dept_id" %>
-				<%= h dept.label %>
+				<%= check_box_tag 'dept_id'+dept.id.to_s,dept.id,false,class: "dept_id",name:"dept_id" %>
+				<%= label_tag 'dept_id'+dept.id.to_s,dept.label %>
       </li>
 	<% end %>
 	</div>
@@ -25,7 +25,7 @@
 	<% end %>
 	</div>
 	</div>
-	<div class="panel panel-primary">
+	<!-- <div class="panel panel-primary">
 	<div class="panel-heading list" data-value="sem">List by Semester<b class="caret"></b></div>
 	<div class="panel-body menu-content" id="sem">
 	<% @sems.each do |sem| %>
@@ -35,6 +35,6 @@
       </li>
 	<% end %>
 	</div>
-	</div>
+	</div> -->
 	<% end %>
 </div>

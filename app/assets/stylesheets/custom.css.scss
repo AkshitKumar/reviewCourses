@@ -17,6 +17,9 @@
 			color: #ffffff;
 			font-size: 16px;
 			font-weight: bold;
+      &:hover{
+        background-color: #0E6FA7;
+      }
 		}
 		.navbar-brand{
 			color: #ffffff;
@@ -46,13 +49,29 @@ background:white;
 }
 
 .menu-content{
-	max-height: 250px;
+	max-height: 200px;
 	overflow-y: auto;
+  padding-top: 5px;
 }
 
 .side-list,.side-sublist{
 list-style-type:none;
+  input[type=checkbox]{
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+  }
+  label{
+    font-weight: normal;
+    display: inline;
+    margin: 0;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }
+
+.side-list 
 
 .side-a,.side-b{
 color:#2C3E50;
@@ -91,7 +110,7 @@ tr.side-list{
 	cursor: pointer;
 	font-weight: bold;
   background: #0E79B6 !important;
-  border-color: #0E79B60 !important;
+  border-color: #0E79B6 !important;
 }
 
 .caret{
@@ -142,21 +161,57 @@ tr.side-list{
 }
 
 .bubble {
-    position: relative;
-    top: -45px;
-    left: 45px;
+    position: absolute;
+    top: 5px;
+    left: 25px;
     background-color: red;
     color: white;
-    width: 15px;
+    width: auto;
     line-height: 15px;
     height: 15px;
+    padding: 0 4px;
     text-align: center;
     font-weight: bold;
     font-size: .85em;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 1px 1px 1px gray;
 }
 
+.activity {
+  border-bottom: solid 1px #CCC;
+  padding: 16px 0;
+  em {
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  a{
+   color: black;
+  }
+  &:hover{
+    background: rgba(14,121,182,0.2) !important;
+  }
+}
+
+.activity1 {
+  border-bottom: solid 1px #CCC;
+  padding: 5px 0;
+  em {
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  &:hover{
+    background: rgba(14,121,182,0.2) !important;
+  }
+}
+
+.seeall{
+  text-align: center;
+  &:hover{
+    background: rgba(14,121,182,0.2);
+  }
+}
 .newcourse + .tooltip > .tooltip-inner {
     background-color: white; 
     color: #0E79B6; 
@@ -204,4 +259,51 @@ span.stars span {
 
 .rating span:hover, .rating span:hover ~ span{
     color: #F3DE06;
+}
+
+.instruct{
+  padding: 20px 40px !important;
+  h3{
+    margin: 10px 0;
+  }
+}
+
+.navbar-default .navbar-nav > .open > a{
+  background-color: #0e79b6;
+  &:hover,&:focus{
+    background-color: #0E6FA7;
+    color: white;
+  }
+}
+
+.dropdown-menu{
+  padding: 0;
+  &:before{
+    position: absolute;
+    top: -7px;
+    right: 15px;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-left: 7px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+  }
+  &:after{
+    position: absolute;
+    top: -6px;
+    right: 16px;
+    display: inline-block;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+    content: '';
+  }
+}
+.dropdown-menu > li > a{
+  color: #0e79b6;
+  &:hover,&:focus{
+    color: #0e79b6;
+    background: transparent;
+  }
 }

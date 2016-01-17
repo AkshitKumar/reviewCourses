@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 });
 <% end %>
 $('.check').on('change', function () {
-    $('input[type="submit"]').prop('disabled', !$('.check:checked').length);
+    $('#myModal input[type="submit"]').prop('disabled', !$('.check:checked').length);
 }).change();
 </script>
 

@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
       id = params[:dept_id]
       prof = params[:prof]
       sem = params[:sem]
-      @courses = Course.categorize(id,prof,sem).order("name ASC").paginate(:page => params[:page], :per_page => 15)
+      @courses = Course.categorize(id,prof,sem).order("number ASC").paginate(:page => params[:page], :per_page => 15)
     end  
   end
 
@@ -146,6 +146,7 @@ class CoursesController < ApplicationController
 
     def authenticate_user!
       unless logged_in?
+        store_location
         redirect_to url_for(:controller=>'oauth',:action=>'index'), alert: "You need to sign in before continuing."
       end
     end

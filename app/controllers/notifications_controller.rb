@@ -15,6 +15,7 @@ class NotificationsController < ApplicationController
 
     def authenticate_user!
       unless logged_in?
+        store_location
         redirect_to url_for(:controller=>'oauth',:action=>'index'), alert: "You need to sign in before continuing."
       end
     end

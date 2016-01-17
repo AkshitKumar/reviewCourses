@@ -63,13 +63,13 @@
 									<%= link_to "Delete",course_review_path(@course,review), method: :delete,class: "btn btn-danger" %>
 								<% end %>
 								<%if current_user.votes.where(review_id: review.id, course_id: review.course.id).present? || (review.user == current_user) %>
-									<%= link_to "Upvote <span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary disabled"%>
+									<%= link_to "<span class='glyphicon glyphicon-thumbs-up'></span> <span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary disabled"%>
 
-									<%= link_to "Downvote".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger disabled"%>
+									<%= link_to "<span class='glyphicon glyphicon-thumbs-down'></span>".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger disabled"%>
 								<% else %>
-									<%= link_to "Upvote <span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary"%>
+									<%= link_to "<span class='glyphicon glyphicon-thumbs-up'></span><span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary"%>
 
-									<%= link_to "Downvote".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger"%>
+									<%= link_to "<span class='glyphicon glyphicon-thumbs-down'></span>".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger"%>
 								<% end %>
 							<% end %>
 						</td>

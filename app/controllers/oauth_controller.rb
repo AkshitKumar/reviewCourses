@@ -24,10 +24,10 @@ class OauthController < ApplicationController
 	     		@student=User.find_by_username(@user['username'])
 	     		log_in @student
 					if @student.remember_token == 0
-						redirect_to courses_path
+						redirect_back_or courses_path
 						@student.remember_token = 1
 					else
-	     			redirect_to root_path
+	     			redirect_back_or root_path
 					end
 	     	   end	
 	        end

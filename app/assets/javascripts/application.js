@@ -15,5 +15,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.form-validator.min
 //= require_tree .
 //= require turbolinks

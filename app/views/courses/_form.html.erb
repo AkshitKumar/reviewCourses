@@ -14,25 +14,37 @@
 
   <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name , class: "form-control" %>
+    <%= f.text_field :name , class: "form-control" ,"data-validation": "required alphanumeric"%>
   </div>
   <div class="form-group">
     <%= f.label :number %><br>
-    <%= f.text_field :number , class: "form-control"%>
+    <%= f.text_field :number , class: "form-control", "data-validation": "required alphanumeric"%>
   </div>
   <div class="form-group">
   <%= f.label "Department"%><br />
-  <%= f.collection_select :dept_id, Dept.all, :id, :label, :prompt => "Select a department" , class: "form-control"%>
+  <%= f.collection_select :dept_id, Dept.all, :id, :label, :prompt => "Select a department" , class: "form-control", "data-validation": "required"%>
   </div>
   <div class="form-group">
     <%= f.label :prof %><br>
-    <%= f.text_field :prof , class: "form-control"%>
+    <%= f.text_field :prof , class: "form-control", "data-validation": "required alphanumeric"%>
   </div>
   <div class="form-group">
     <%= f.label :credits %><br>
-    <%= f.number_field :credits , class: "form-control" %>
+    <%= f.number_field :credits , class: "form-control", "data-validation": "required number" %>
   </div>
   <div class="actions">
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$.validate({
+  validateOnBlur:false
+}); 
+$('#new_course').on('submit',function(){
+  if (!$('select').val()) {
+  $('select').after("<span style='color:#a94442;display: block;margin-top: 5px;margin-bottom: 10px;'>You cannot leave this empty.</span>");
+  $('select').css({'border': '1px solid #a94442'});
+  }
+});
+</script>

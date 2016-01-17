@@ -24,7 +24,6 @@
 </div>
   <div class="form-group">
     <%= f.label :rating %><br>
-    <%= f.hidden_field(:rating, :value => @review.rating) %>
     <div class="rating">
     <span id="5" class="glyphicon glyphicon-star"></span>
     <span id="4" class="glyphicon glyphicon-star"></span>
@@ -33,33 +32,45 @@
     <span id="1" class="glyphicon glyphicon-star"></span>
     </div>
   </div>
-  <br><br>
+  <br><%= f.hidden_field(:rating, :value => @review.rating,"data-validation": "required")%><br>
   <div class="form-group">
     <%= f.label "Grading system" %>
-    <%= f.text_area :grading , class: "form-control"%>
+    <%= f.text_area :grading , class: "form-control","data-validation": "required"%>
   </div>
 
    <div class="form-group">
     <%= f.label "What did you learn from this course?" %>
-    <%= f.text_area :learning  , class: "form-control"%>
+    <%= f.text_area :learning  , class: "form-control","data-validation": "required"%>
   </div>
 
    <div class="form-group">
     <%= f.label "How to go about the course with references?" %>
-    <%= f.text_area :apply  , class: "form-control"%>
+    <%= f.text_area :apply  , class: "form-control","data-validation": "required"%>
   </div>
 
    <div class="form-group">
     <%= f.label "Pre-requisites for the course" %>
-    <%= f.text_area :prerequisites  , class: "form-control"%>
+    <%= f.text_area :prerequisites  , class: "form-control","data-validation": "required"%>
   </div>
 
   <div class="form-group">
     <%= f.label "How will this course be useful for your career?" %>
-    <%= f.text_area :usefulforcareer  , class: "form-control"%>
+    <%= f.text_area :usefulforcareer  , class: "form-control","data-validation": "required"%>
   </div>
 
   <div class="form-group">
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$.validate({
+  validateOnBlur:false
+}); 
+$('#new_review').on('submit',function(){
+  if (!$('#review_rating').val()) {
+  $('#review_rating').after("<span style='color:#a94442;display: block;margin-top: 5px;margin-bottom: 10px;'>You cannot leave this empty.</span>");
+  $('.rating').css({'border': '1px solid #a94442'});
+  }
+});
+</script>

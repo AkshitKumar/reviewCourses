@@ -19,8 +19,8 @@
 	<div class="panel-body menu-content" id="prof">
 	<% @profs.each do |prof| %>
 			<li class="side-list">
-				<%= check_box_tag 'prof',prof.name,false,class: "prof" %>
-				<%= h prof.name %>
+				<%= check_box_tag 'prof'+prof.id.to_s,prof.name,false,class: "prof", name:"prof" %>
+				<%= label_tag 'prof'+prof.id.to_s,prof.name %>
       </li>
 	<% end %>
 	</div>

@@ -1,7 +1,7 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 ActionMailer::Base.smtp_settings = {
-  :user_name => 'instituewebops@gmail.com',
+  :user_name => 'institutewebops@gmail.com',
   :password => 'instiwmo1516',
   :domain => 'gmail.com',
   :address => 'smtp.gmail.com',

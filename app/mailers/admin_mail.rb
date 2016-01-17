@@ -3,7 +3,7 @@ class AdminMail < ApplicationMailer
     def review_mail(course,user)
           @user = User.find_by_id(user)
           @course= Course.find_by_id(course)
-        mail( :to => "instituewebops@gmail.com",
+        mail( :to => "institutewebops@gmail.com",
     :subject => " #{@user['fullname'].titleize}'s' Review on Course #{@course['name'].titleize}" )
     end
 end

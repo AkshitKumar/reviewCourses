@@ -1,0 +1,9 @@
+
+<% if params[:review] %>
+<% review = @course.reviews.find(params[:review]) %>
+<% end %>
+
+<% unless (review.user == current_user) %>
+<%= link_to "Upvote"+review.upvote.to_s,course_review_upvote_path(@course,review),class: "btn btn-primary", remote: true%>
+<%= link_to "Downvote"+review.downvote.to_s,course_review_downvote_path(@course,review),class: "btn btn-danger", remote: true%>
+<% end %>

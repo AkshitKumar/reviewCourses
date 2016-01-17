@@ -1,14 +1,11 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , except: [:index, :show]
+  before_action :authenticate_user! 
   before_action :check_user,except: [:index,:show]
 
   # GET /courses
   # GET /courses.json
   def index
-    if !logged_in?
-      redirect_to url_for(:controller=>'oauth',:action=>'index')
-    end
     if params[:search].present?
       @courses = Course.search params[:search], 
                  operator: "or",
@@ -30,7 +27,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     mark_as_read
-    @reviews = Review.where(course_id: @course.id).order("created_at DESC")
+    @reviews = Review.where(course_id: @course.id).order("vote_count DESC" ,"created_at DESC")
     if @reviews.blank?
       @avg_ratings = 0
     else
@@ -149,7 +146,7 @@ class CoursesController < ApplicationController
 
     def authenticate_user!
       unless logged_in?
-        redirect_to root_url, alert: "You need to sign in before continuing."
+        redirect_to url_for(:controller=>'oauth',:action=>'index'), alert: "You need to sign in before continuing."
       end
     end
     

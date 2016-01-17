@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :course
+	has_many :votes, dependent: :destroy
 	validates :rating, :grading, :learning, :apply, :prerequisites, :usefulforcareer, presence: true
 	validates :rating, numericality: {
 		only_integer: true,

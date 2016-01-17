@@ -31,7 +31,7 @@
     <% else %>
   <%=check_box_tag   "follow[#{dept.id}]" ,dept.id %> 
   <% end %>
-        <%= h dept.label %>
+        <%= label_tag "follow[#{dept.id}]",dept.label %>
         <% i+=1 %>
       </li>
       <% end %>

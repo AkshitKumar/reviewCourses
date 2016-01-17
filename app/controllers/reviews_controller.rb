@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [ :edit, :update, :destroy]
+  before_action :set_review, only: [ :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_course
   before_action :authenticate_user!
   before_action :check_review, only: [:edit, :update , :destroy]
+  before_action :check_vote, only: [:upvote, :downvote]
   after_action :mail , only: [:create, :update]
   # GET /reviews
   # GET /reviews.json
@@ -103,6 +104,38 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def upvote
+    count = @review.vote_count.to_i
+    count+=1
+    up = @review.upvote.to_i
+    up+=1
+    # raise up.inspect
+    @vote = current_user.votes.new
+    @vote.review_id = @review.id
+    @vote.course_id = @course.id
+    if @vote.save
+      @review.update(upvote: up, vote_count: count)
+      respond_to do |format|
+        format.html{ redirect_to course_path(@course) }
+      end
+    end
+  end
+
+  def downvote
+    count = @review.vote_count.to_i
+    count-=1
+    # raise down.inspect
+    @vote = current_user.votes.new
+    @vote.review_id = @review.id
+    @vote.course_id = @course.id
+    if @vote.save
+      @review.update(vote_count: count)
+      respond_to do |format|
+       format.html{ redirect_to course_path(@course) }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
@@ -119,9 +152,19 @@ class ReviewsController < ApplicationController
       end
     end
 
+    def check_vote
+      if @review.user == current_user
+        redirect_to course_path(@review.course), alert: "You cannot vote for your own answer!"
+      end
+
+      if current_user.votes.where(review_id: @review.id, course_id: @review.course.id).present?
+        redirect_to course_path(@review.course), alert: "You cannot vote more than once!"
+      end
+    end
+
     def authenticate_user!
       unless logged_in?
-        redirect_to root_url, alert: "You need to sign in before continuing."
+        redirect_to url_for(:controller=>'oauth',:action=>'index'), alert: "You need to sign in before continuing."
       end
     end
     
@@ -129,6 +172,7 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:rating, :grading, :learning, :apply, :prerequisites, :usefulforcareer)
     end
+
     def mail
       AdminMail.review_mail(@review.course_id,@review.user_id).deliver_now
     end

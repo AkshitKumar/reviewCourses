@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :notifications
   resources :courses do
     resources :reviews , except: [:show, :index]
+    get 'reviews/:id/upvote' => 'reviews#upvote', as: :review_upvote
+    get 'reviews/:id/downvote' => 'reviews#downvote', as: :review_downvote
   end
   
   post 'users' => 'users#following'

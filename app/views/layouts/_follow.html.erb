@@ -27,9 +27,9 @@
         <% end %>
       <li class="side-list">
         <% if !@check.nil? %>
-  <%=check_box_tag   "follow[#{dept.id}]" ,dept.id,@check.include?(dept.id.to_s) %>
+  <%=check_box_tag   "follow[#{dept.id}]" ,dept.id,@check.include?(dept.id.to_s),class:"check" %>
     <% else %>
-  <%=check_box_tag   "follow[#{dept.id}]" ,dept.id %> 
+  <%=check_box_tag   "follow[#{dept.id}]" ,dept.id,class:"check" %> 
   <% end %>
         <%= label_tag "follow[#{dept.id}]",dept.label %>
         <% i+=1 %>
@@ -46,13 +46,18 @@
 
   </div>
 </div>
-<% if logged_in? && current_user.follow.blank? %>
+
 <script type="text/javascript">
+<% if logged_in? && current_user.follow.blank? %>
 jQuery(document).ready(function($){
    $("#myModal").modal({
      keyboard: false,
      backdrop: 'static'
    });
 });
-</script>
 <% end %>
+$('.check').on('change', function () {
+    $('input[type="submit"]').prop('disabled', !$('.check:checked').length);
+}).change();
+</script>
+

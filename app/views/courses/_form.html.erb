@@ -2,7 +2,7 @@
   <% if @course.errors.any? %>
      <div id="error_explanation" class="alert alert-danger alert-dismissable">
       <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h4>
+      <h4><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h4>
 
       <ul>
       <% @course.errors.full_messages.each do |message| %>

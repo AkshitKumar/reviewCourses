@@ -17,3 +17,5 @@
 //= require bootstrap
 //= require_tree .
 //= require turbolinks
+
+

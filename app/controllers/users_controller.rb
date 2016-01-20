@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       # raise p.inspect
       i=0
       cats=Array.new
-      while i<20 do
+      while i<27 do
         i+=1
         cat=params[:follow][i.to_s]
         cats.push cat

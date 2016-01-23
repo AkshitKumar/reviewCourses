@@ -7,15 +7,8 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:search].present?
-      @courses = Course.search params[:search], 
-                 operator: "or",
-                 page: params[:page], 
-                 per_page: 15, 
-                 order: [number: :asc], 
-                 misspellings: false, 
-                 fields: [{name: :word_start},:prof,:number] ,
-                 match: :word_start
-    else
+      @courses = Course.where('(name LIKE ?) OR (number LIKE ?) OR (prof LIKE ?)', "%#{params[:search]}%", "%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
+    else  
       id = params[:dept_id]
       prof = params[:prof]
       sem = params[:sem]

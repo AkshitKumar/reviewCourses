@@ -26,6 +26,10 @@ class CoursesController < ApplicationController
     else
       @avg_ratings = @reviews.average(:rating).round(2)
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /courses/new

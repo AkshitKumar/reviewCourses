@@ -14,7 +14,7 @@ $(function() {
 
     $('.newcourse').tooltip();
     
-    $('span.stars').stars();
+    $('span.stars1').stars();
     
     var star = $('#review_rating').val();
     if(star>0){

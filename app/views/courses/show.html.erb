@@ -9,7 +9,7 @@
   		<% if @avg_ratings < 1 %>
  		Not yet rated!
  		<% else %>
-  		<span class="stars"><%= @avg_ratings %></span>
+  		<span class="stars1"><%= @avg_ratings %></span>
   		<% end %>
 		</p>
 
@@ -44,37 +44,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @reviews.each do |review| %>
-					<tr>
-						<td>
-							<h4> <%= "#{review.user.fullname.titleize}" %> </h4>
-							<p class="text-muted"> <%= review.created_at.in_time_zone("Chennai").strftime("%H:%M %d %b %Y")%> </p>
-						</td>
-						<td>
-							<p><span class="stars"><%= review.rating %></span></p>
-							<p> <b>Grading:</b> <%= h(review.grading).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> <b>Learning:</b> <%= h(review.learning).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> <b>How to go about the course:</b> <%= h(review.apply).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> <b>Prerequisites:</b> <%= h(review.prerequisites).gsub(/\n/,'<br/>').html_safe %> </p>
-							<p> <b>How will it be useful:</b> <%= h(review.usefulforcareer).gsub(/\n/,'<br/>').html_safe %> </p>
-							<% if logged_in? %>
-								<% if (review.user == current_user) || current_user.admin? %>
-									<%= link_to "Edit",edit_course_review_path(@course,review),class: "btn btn-primary"%>
-									<%= link_to "Delete",course_review_path(@course,review), method: :delete,class: "btn btn-danger" %>
-								<% end %>
-								<%if current_user.votes.where(review_id: review.id, course_id: review.course.id).present? || (review.user == current_user) %>
-									<%= link_to "<span class='glyphicon glyphicon-thumbs-up'></span> <span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary disabled"%>
-
-									<%= link_to "<span class='glyphicon glyphicon-thumbs-down'></span>".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger disabled"%>
-								<% else %>
-									<%= link_to "<span class='glyphicon glyphicon-thumbs-up'></span><span class='badge'>#{review.upvote}</span>".html_safe,course_review_upvote_path(@course,review),class: "btn btn-primary"%>
-
-									<%= link_to "<span class='glyphicon glyphicon-thumbs-down'></span>".html_safe,course_review_downvote_path(@course,review),class: "btn btn-danger"%>
-								<% end %>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
+				<%= render 'reviews' %>
 			</tbody>
 		</table>
 		<% end %>

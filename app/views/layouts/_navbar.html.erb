@@ -53,12 +53,12 @@
               <% unless current_user.admin? %>
               <li class="activity1"><%= link_to "Edit Choices", '', "data-target" => "#myModal","data-toggle"=> "modal" %></li>
               <% end %>
+              <li><%= link_to "Reviews", userreviews_path %></li>
               <li class="activity1"><%= link_to "Log out", logout_path , method: "delete" %></li>  
             </ul>
-          </li>
     <% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div><!-- /.navbar-collapse -->r
   </div><!-- /.container-fluid -->
 </nav>
 

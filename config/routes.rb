@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   root 'courses#index'
-
+  get 'users/showreview' => 'users#showreview' , as: :userreviews
   resources :oauth
   get 'login'=> 'oauth#index'
   delete 'logout'=>'oauth#signout'

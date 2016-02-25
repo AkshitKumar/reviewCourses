@@ -1,0 +1,7 @@
+<%if @user.reviews.any? %>
+	<h3> Reviews (<%= @user.reviews.count%>) </h3>
+	<ol class="reviews">
+		<%= render 'showreview' %>
+	</ol>
+	<center><%= will_paginate @reviews, inner_window: 1, outer_window: 0, renderer: BootstrapPagination::Rails %></center>
+<% end %> 

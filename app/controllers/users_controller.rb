@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	
+	before_action :authenticate_user!
+
   def following
     p = params[:follow]
     if !p.nil?
@@ -24,4 +25,16 @@ class UsersController < ApplicationController
       format.html{redirect_to root_url, notice: "Your choices have been saved."}
    end
   end
+
+  def showreview
+    @user = current_user
+    @reviews = @user.reviews.paginate(page: params[:page],:per_page => 3)
+  end
+
+  def authenticate_user!
+      unless logged_in?
+        store_location
+        redirect_to url_for(:controller=>'oauth',:action=>'index'), alert: "You need to sign in before continuing."
+      end
+    end
 end

@@ -1,0 +1,13 @@
+<% for review in @reviews%>
+<li id="review-<%= review.id %>">
+	<span class="course"> <b> <%= link_to review.course.name , review.course %> </b> </span>
+	<span class="grading"> <b> Grading : </b> <%= review.grading %> </span>
+	<span class="learning"> <b> Learning : </b><%= review.learning %> </span>
+	<span class="apply"> <b> Where you can apply it : </b> <%= review.apply %> </span>
+	<span class="prerequisites"> <b> Prerequisites: </b><%= review.prerequisites %></span>
+	<span class="usefulforcareer"> <b> How it will be useful :</b> <%= review.usefulforcareer %> </span>
+	<span class="timestamp">
+		<b> Posted <%= time_ago_in_words(review.created_at)%> ago. </b>
+	</span>
+</li>
+<% end %>

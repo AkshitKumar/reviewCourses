@@ -1,5 +1,5 @@
 class AdminMail < ApplicationMailer
-    default_url_options[:host]='localhost:3000'
+    default_url_options[:host]='https://students.iitm.ac.in/reviewCourses'
     def review_mail(course,user)
           @user = User.find_by_id(user)
           @course= Course.find_by_id(course)

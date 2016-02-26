@@ -4,9 +4,9 @@ class SearchSuggestions
 	end
 
 	def call(env)
-		if env["PATH_INFO"] == "/search_suggestions"
+		if env["PATH_INFO"] == "/reviewCourses/search_suggestions"
 			request = Rack::Request.new(env)
-			terms = ::SearchSuggestion.terms_for(request.params["term"])
+			terms = SearchSuggestion.terms_for(request.params["term"])
 			[200, {"Content-Type" => "application/json"}, [terms.to_json]]
 		else
 			@app.call(env)

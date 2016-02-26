@@ -247,6 +247,17 @@ span.stars span {
     background-position: 0 0;
 }
 
+span.stars1, span.stars1 span {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars1 span {
+    background-position: 0 0;
+}
+
 .rating {
     float: left;
 }

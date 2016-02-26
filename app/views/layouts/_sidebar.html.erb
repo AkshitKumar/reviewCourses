@@ -2,7 +2,7 @@
 <% @profs = Prof.all %>
 <% @sems = Sem.all %>
 <div class="sidenav col-md-3">
-	<%= form_tag('/courses' , id: "category", method: :get, remote: true) do %>
+	<%= form_tag('courses', id: "category", method: :get, remote: true) do %>
 	<div class="panel panel-primary">
 	<div class="panel-heading list" data-value="dept">List by Department<b class="caret"></b></div>
 	<div class="panel-body menu-content" id="dept">

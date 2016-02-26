@@ -7,14 +7,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:search].present?
-      @courses = Course.search params[:search], 
-                 operator: "or",
-                 page: params[:page], 
-                 per_page: 15, 
-                 order: [number: :asc], 
-                 misspellings: false, 
-                 fields: [{name: :word_start},:prof,:number] ,
-                 match: :word_start
+      @courses = Course.where('(name LIKE ?) OR (number LIKE ?) OR (prof LIKE ?)', "%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
     else
       id = params[:dept_id]
       prof = params[:prof]
@@ -32,6 +25,10 @@ class CoursesController < ApplicationController
       @avg_ratings = 0
     else
       @avg_ratings = @reviews.average(:rating).round(2)
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 

@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20160117101208) do
     t.integer  "course_id",  limit: 4
     t.string   "notif_type", limit: 255
     t.string   "action",     limit: 255
-    t.boolean  "read"
+    t.boolean  "read",       limit: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

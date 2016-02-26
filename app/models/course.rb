@@ -1,7 +1,6 @@
 class Course < ActiveRecord::Base
 	has_many :reviews
 	belongs_to :dept
-	searchkick word_start: [:name]
 	validates :name, :number , :prof , :credits , presence: true
 	validates :name,:format => {:with => /\A[a-zA-Z]+\Z/}
 	validates :number,length: { is: 6 },:format => {:with => /\A[a-zA-Z0-9]+\Z/}
@@ -19,8 +18,4 @@ class Course < ActiveRecord::Base
     		all
 		end
 	end
-end
-
-def search_data
-	as_json only: [:name, :prof, :number]
 end

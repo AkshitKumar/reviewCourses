@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'reviews/:id/upvote' => 'reviews#upvote', as: :review_upvote
     get 'reviews/:id/downvote' => 'reviews#downvote', as: :review_downvote
   end
-  
+  resources :search_suggestions, only: [:index]
   post 'users' => 'users#following'
 
   get 'pages/about'

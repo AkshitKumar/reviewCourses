@@ -14,7 +14,7 @@ $(function() {
 
     $('.newcourse').tooltip();
     
-    $('span.stars').stars();
+    $('span.stars1').stars();
     
     var star = $('#review_rating').val();
     if(star>0){
@@ -90,7 +90,7 @@ $(function() {
  // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
             minLength: 2,
  // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
-            source: '/search_suggestions',
+            source: '/reviewCourses/search_suggestions',
   // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the term.
             focus: function(event, ui) {
                 $('#search').val(ui.item.term_type);
@@ -100,11 +100,11 @@ $(function() {
             select: function(event, ui) {
  // place the term value into the textfield called 'search'...
                 if(ui.item.course_id== null){
-                  location.href = "/courses?utf8=✓&search="+encodeURI(ui.item.term);
+                  location.href = "/reviewCourses/courses?utf8=✓&search="+encodeURI(ui.item.term);
                 // $('#search').val(ui.item.term);
                 }
                 else{
-                  location.href = "/courses/"+ui.item.course_id;  
+                  location.href = "/reviewCourses/courses/"+ui.item.course_id;  
                 }
                 return false;
             }

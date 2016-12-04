@@ -1,14 +1,17 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! 
+  before_action :authenticate_user!, except: [:index] 
   before_action :check_user,except: [:index,:show]
 
   # GET /courses
   # GET /courses.json
   def index
+    unless logged_in?
+      redirect_to url_for(:controller=>'oauth',:action=>'index')
+    end
     if params[:search].present?
-      @courses = Course.where('(name LIKE ?) OR (number LIKE ?) OR (prof LIKE ?)', "%#{params[:search]}%","%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
-    else
+      @courses = Course.where('(name LIKE ?) OR (number LIKE ?) OR (prof LIKE ?)', "%#{params[:search]}%", "%#{params[:search]}%","%#{params[:search]}%").paginate(:page => params[:page], :per_page => 15)
+    else  
       id = params[:dept_id]
       prof = params[:prof]
       sem = params[:sem]
@@ -30,6 +33,10 @@ class CoursesController < ApplicationController
         format.js
       end
     end
+#    respond_to do |format|
+ #     format.html
+  #    format.js
+   # end
   end
 
   # GET /courses/new

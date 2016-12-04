@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
           admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "create")
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
+        format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
@@ -71,7 +71,7 @@ class ReviewsController < ApplicationController
           admin.notifications.create(user_id: user.id, owner_id: current_user.id, course_id: @course.id, read: false, notif_type: "Review", action: "update")
         end
         format.html { redirect_to course_path(@course), notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
+        format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
         format.json { render json: @review.errors, status: :unprocessable_entity }

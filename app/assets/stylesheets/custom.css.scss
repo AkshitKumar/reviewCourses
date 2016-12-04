@@ -16,7 +16,8 @@
 		.navbar-nav > li > a{
 			color: #ffffff;
 			font-size: 16px;
-			font-weight: bold;
+			font-family:Verdana, Geneva, sans-serif;
+			font-weight:500;
       &:hover{
         background-color: #0E6FA7;
       }
@@ -25,6 +26,7 @@
 			color: #ffffff;
 			font-size:30px;
 			font-weight: bold;
+			font-family:Times, Calibri, sans-serif;
 		}
 	}
 }
@@ -318,3 +320,63 @@ span.stars1 span {
     background: transparent;
   }
 }
+
+.reviews {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .course {
+    font-size: 1.5em;
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .grading {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .learning {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .apply {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .prerequisites {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .usefulforcareer {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+}
+

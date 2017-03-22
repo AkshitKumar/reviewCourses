@@ -18,3 +18,4 @@
 
 #Ignore database.yml
 /config/database.yml
+/config/environments/production.rb
